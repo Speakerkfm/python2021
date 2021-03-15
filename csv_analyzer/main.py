@@ -37,11 +37,13 @@ def get_department_info(raw_data: list):
             departments[department_name][FIELD_MIN_SALARY] = int(row[FIELD_SALARY])
         if departments[department_name][FIELD_MAX_SALARY] < int(row[FIELD_SALARY]):
             departments[department_name][FIELD_MAX_SALARY] = int(row[FIELD_SALARY])
-    return [{FIELD_DEPARTMENT: dep,
-             FIELD_TOTAL_WORKERS: info[FIELD_TOTAL_WORKERS],
-             FIELD_AVG_SALARY: "%.2f" % (info[FIELD_TOTAL_SALARY] / info[FIELD_TOTAL_WORKERS]),
-             FIELD_MIN_SALARY: info[FIELD_MIN_SALARY],
-             FIELD_MAX_SALARY: info[FIELD_MAX_SALARY]} for dep, info in departments.items()]
+    return [{
+        FIELD_DEPARTMENT: department_name,
+        FIELD_TOTAL_WORKERS: info[FIELD_TOTAL_WORKERS],
+        FIELD_AVG_SALARY: "%.2f" % (info[FIELD_TOTAL_SALARY] / info[FIELD_TOTAL_WORKERS]),
+        FIELD_MIN_SALARY: info[FIELD_MIN_SALARY],
+        FIELD_MAX_SALARY: info[FIELD_MAX_SALARY],
+    } for department_name, info in departments.items()]
 
 
 def read_data_csv(file_name: str):
