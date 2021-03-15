@@ -1,6 +1,8 @@
 import csv
 import pprint
 
+INPUT_FILE_NAME = 'data.csv'
+OUTPUT_FILE_NAME = 'out.csv'
 FIELD_SALARY = 'salary'
 FIELD_DEPARTMENT = 'department'
 FIELD_TOTAL_WORKERS = 'total_workers'
@@ -55,24 +57,24 @@ def read_data_csv(file_name: str):
 
 
 def print_all_departments():
-    """print department names"""
-    raw_data = read_data_csv('data.csv')
+    """print all department names"""
+    raw_data = read_data_csv(INPUT_FILE_NAME)
     department_info = get_department_info(raw_data)
     pprint.pprint([dep[FIELD_DEPARTMENT] for dep in department_info])
 
 
 def print_departments_info():
     """print departments info"""
-    raw_data = read_data_csv('data.csv')
+    raw_data = read_data_csv(INPUT_FILE_NAME)
     department_info = get_department_info(raw_data)
     pprint.pprint(department_info)
 
 
 def save_departments_info_to_csv():
-    """print departments info"""
-    raw_data = read_data_csv('data.csv')
+    """save departments info to csa"""
+    raw_data = read_data_csv(INPUT_FILE_NAME)
     department_info = get_department_info(raw_data)
-    write_data_csv('out.csv', department_info)
+    write_data_csv(OUTPUT_FILE_NAME, department_info)
 
 
 def menu():
