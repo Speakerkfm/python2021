@@ -1,4 +1,5 @@
 import csv
+import pprint
 
 FIELD_SALARY = 'salary'
 FIELD_DEPARTMENT = 'department'
@@ -57,14 +58,14 @@ def print_all_departments():
     """print department names"""
     raw_data = read_data_csv('data.csv')
     department_info = get_department_info(raw_data)
-    print([dep[FIELD_DEPARTMENT] for dep in department_info])
+    pprint.pprint([dep[FIELD_DEPARTMENT] for dep in department_info])
 
 
 def print_departments_info():
     """print departments info"""
     raw_data = read_data_csv('data.csv')
     department_info = get_department_info(raw_data)
-    print(department_info)
+    pprint.pprint(department_info)
 
 
 def save_departments_info_to_csv():
