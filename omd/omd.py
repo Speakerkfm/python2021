@@ -22,12 +22,12 @@ class GameStep:
 
     @staticmethod
     def read_step(self):
-        return raw_input(self.placeholder.format(*self.next_steps))
+        return input(self.placeholder.format(*self.next_steps))
 
     def next_step(self):
         if self.description != '':
-            print self.description
-        print self.question
+            print(self.description)
+        print(self.question)
         selected_step = ''
         while selected_step not in self.next_steps:
             selected_step = self.read_step(self)
@@ -40,7 +40,7 @@ class EndStep:
 
     def next_step(self):
         if self.description != '':
-            print self.description
+            print(self.description)
         return None
 
 

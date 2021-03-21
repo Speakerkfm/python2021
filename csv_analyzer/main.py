@@ -34,16 +34,18 @@ def get_department_info(raw_data: list):
                 FIELD_MIN_SALARY: int(row[FIELD_SALARY]),
                 FIELD_MAX_SALARY: int(row[FIELD_SALARY])
             }
+        salary = int(row[FIELD_SALARY])
         departments[department_name][FIELD_TOTAL_WORKERS] += 1
-        departments[department_name][FIELD_TOTAL_SALARY] += int(row[FIELD_SALARY])
-        if departments[department_name][FIELD_MIN_SALARY] > int(row[FIELD_SALARY]):
-            departments[department_name][FIELD_MIN_SALARY] = int(row[FIELD_SALARY])
-        if departments[department_name][FIELD_MAX_SALARY] < int(row[FIELD_SALARY]):
-            departments[department_name][FIELD_MAX_SALARY] = int(row[FIELD_SALARY])
+        departments[department_name][FIELD_TOTAL_SALARY] += salary
+        if departments[department_name][FIELD_MIN_SALARY] > salary:
+            departments[department_name][FIELD_MIN_SALARY] = salary
+        if departments[department_name][FIELD_MAX_SALARY] < salary:
+            departments[department_name][FIELD_MAX_SALARY] = salary
     return [{
         FIELD_DEPARTMENT: department_name,
         FIELD_TOTAL_WORKERS: info[FIELD_TOTAL_WORKERS],
-        FIELD_AVG_SALARY: "%.2f" % (info[FIELD_TOTAL_SALARY] / info[FIELD_TOTAL_WORKERS]),
+        FIELD_AVG_SALARY: "%.2f" % (
+                info[FIELD_TOTAL_SALARY] / info[FIELD_TOTAL_WORKERS]),
         FIELD_MIN_SALARY: info[FIELD_MIN_SALARY],
         FIELD_MAX_SALARY: info[FIELD_MAX_SALARY],
     } for department_name, info in departments.items()]
