@@ -10,7 +10,7 @@ class ColorizeMixin:
 
     def __repr__(self):
         return f'\033[1;{self.repr_color_code};1m ' \
-               f'{self.title} | {self.price} ' \
+               f'{self.title} | {self.price} ₽' \
                f'\033[0;1;1m'
 
 
@@ -30,7 +30,7 @@ class Advert(ColorizeMixin):
         return self._price
 
     @price.setter
-    def price(self, var):
+    def price(self, var: int):
         if var < 0:
             raise ValueError("must be >= 0")
         self._price = var
@@ -51,7 +51,7 @@ def obj_from_dict(data: dict, cls: object) -> object:
                                 else x for x in b])
         else:
             obj.__setattr__(a, obj_from_dict(b, cls)
-            if isinstance(b, dict) else b)
+                            if isinstance(b, dict) else b)
     return obj
 
 
