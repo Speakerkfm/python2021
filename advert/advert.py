@@ -9,12 +9,19 @@ class ColorizeMixin:
     repr_color_code = 33
 
     def __repr__(self):
-        return f'\033[1;{self.repr_color_code};1m ' \
-               f'{self.title} | {self.price} ₽' \
+        return f'\033[1;{self.repr_color_code};1m' \
+               + super(ColorizeMixin, self).__repr__() + \
                f'\033[0;1;1m'
 
 
-class Advert(ColorizeMixin):
+class BaseAdvert:
+    repr_color_code = 32  # green
+
+    def __repr__(self):
+        return f'{self.title} | {self.price} ₽'
+
+
+class Advert(ColorizeMixin, BaseAdvert):
     """
     Contains advert info
     """
@@ -46,12 +53,12 @@ def obj_from_dict(data: dict, cls: object) -> object:
     obj = cls()
     for a, b in data.items():
         if isinstance(b, (list, tuple)):
-            obj.__setattr__(a, [obj_from_dict(x, cls)
-                                if isinstance(x, dict)
-                                else x for x in b])
+            setattr(obj, a, [obj_from_dict(x, cls)
+                             if isinstance(x, dict)
+                             else x for x in b])
         else:
-            obj.__setattr__(a, obj_from_dict(b, cls)
-                            if isinstance(b, dict) else b)
+            setattr(obj, a, obj_from_dict(b, cls)
+            if isinstance(b, dict) else b)
     return obj
 
 
