@@ -1,4 +1,4 @@
-from collections import Iterable
+from collections.abc import Iterable
 
 
 def ilen(iterable: Iterable):
@@ -10,23 +10,17 @@ def ilen(iterable: Iterable):
     return len(list(iterable))
 
 
-def unnest(iterable: Iterable):
-    res = []
-    for x in iterable:
-        if isinstance(x, list):
-            res += unnest(x)
-        else:
-            res.append(x)
-    return res
-
-
 def flatten(iterable: Iterable):
     """
     >>> list(flatten([0, [1, [2, 3]]]))
     [0, 1, 2, 3]
     """
 
-    yield from unnest(iterable)
+    for i in iterable:
+        if isinstance(i, (list, set, frozenset, tuple)):
+            yield from flatten(i)
+        elif isinstance(i, (int, str, float, bool)):
+            yield i
 
 
 def distinct(iterable: Iterable):
@@ -81,7 +75,7 @@ def first(iterable: Iterable):
     >>> print(first(range(0)))
     None
     """
-    return next((x for x in iterable), None)
+    return next(iter(iterable), None)
 
 
 def last(iterable: Iterable):

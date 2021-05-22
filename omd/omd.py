@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class Game:
     def __init__(self, start_step):
         self.start_step = start_step
@@ -16,11 +15,9 @@ class GameStep:
         self.next_steps = next_steps
         self.placeholder = self.create_placeholder()
 
-    @staticmethod
-    def create_placeholder():
+    def create_placeholder(self):
         return 'Выберите: {}/{}\n'
 
-    @staticmethod
     def read_step(self):
         return input(self.placeholder.format(*self.next_steps))
 
@@ -30,7 +27,7 @@ class GameStep:
         print(self.question)
         selected_step = ''
         while selected_step not in self.next_steps:
-            selected_step = self.read_step(self)
+            selected_step = self.read_step()
         return self.next_steps[selected_step]
 
 

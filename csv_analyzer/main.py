@@ -1,5 +1,5 @@
 import csv
-import pprint
+from pprint import pprint
 
 INPUT_FILE_NAME = 'data.csv'
 OUTPUT_FILE_NAME = 'out.csv'
@@ -12,7 +12,7 @@ FIELD_MAX_SALARY = 'max_salary'
 FIELD_AVG_SALARY = 'avg_salary'
 
 
-def write_data_csv(file_name: str, data: list):
+def write_data_csv(file_name: str, data: list()):
     """write data to csv file with file_name"""
     with open(file_name, 'w') as f:
         writer = csv.DictWriter(
@@ -62,14 +62,14 @@ def print_all_departments():
     """print all department names"""
     raw_data = read_data_csv(INPUT_FILE_NAME)
     department_info = get_department_info(raw_data)
-    pprint.pprint([dep[FIELD_DEPARTMENT] for dep in department_info])
+    pprint([dep[FIELD_DEPARTMENT] for dep in department_info])
 
 
 def print_departments_info():
     """print departments info"""
     raw_data = read_data_csv(INPUT_FILE_NAME)
     department_info = get_department_info(raw_data)
-    pprint.pprint(department_info)
+    pprint(department_info)
 
 
 def save_departments_info_to_csv():
