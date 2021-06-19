@@ -1,0 +1,9 @@
+site01,time01,site02,time02,site03,time03,site04,time04,user_id
+vk.com,2013-11-15 09:28:17,oracle.com,2013-11-15 09:33:04,,,,,2
+apis.google.com,2013-11-15 11:40:40,,,,,,,2
+plus.google.com,2013-11-15 11:46:35,,,,,,,2
+vk.com,2013-11-15 09:28:17,oracle.com,2013-11-15 09:33:04,,,,,1
+oracle.com,2013-11-15 09:52:48,,,,,,,1
+geo.mozilla.org,2013-11-15 11:37:26,oracle.com,2013-11-15 11:40:32,google.com,2013-11-15 11:40:34,accounts.google.com,2013-11-15 11:40:35,1
+google.com,2013-11-15 11:40:34,accounts.google.com,2013-11-15 11:40:35,mail.google.com,2013-11-15 11:40:37,apis.google.com,2013-11-15 11:40:40,1
+mail.google.com,2013-11-15 11:40:37,apis.google.com,2013-11-15 11:40:40,plus.google.com,2013-11-15 11:41:35,,,1
