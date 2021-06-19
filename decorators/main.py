@@ -91,17 +91,19 @@ def replace_commas(func: Callable) -> Callable:
 
 
 def capitalize(s):
-    s, result = s.title(), ""
-    for word in s.split():
-        result += word[:-1] + word[-1].upper() + " "
-    return result[:-1]
+    if len(s) > 1:
+        return ''.join([s[:1].capitalize(), s[1:-1], (s[-1:].capitalize())])
+    return s.capitalize()
 
 
-def words_title(func: Callable) -> Callable:
-    def decorated(text: str) -> str:
-        return func(capitalize(text))
+def words_title(func):
+    def wrapper(*args, **kwargs):
+        res = func(*args, **kwargs).split(" ")
+        for i in range(len(res)):
+            res[i] = capitalize(res[i])
+        return ' '.join(res)
 
-    return decorated
+    return wrapper
 
 
 @words_title

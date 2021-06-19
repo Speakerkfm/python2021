@@ -7,7 +7,7 @@ def ilen(iterable: Iterable):
     >>> ilen(foo)
     10
     """
-    return len(list(iterable))
+    return sum(1 for _ in iterable)
 
 
 def flatten(iterable: Iterable):
@@ -28,10 +28,10 @@ def distinct(iterable: Iterable):
     >>> list(distinct([1, 2, 0, 1, 3, 0, 2]))
     [1, 2, 0, 3]
     """
-    mas = []
+    mas = set()
     for x in iterable:
         if x not in mas:
-            mas.append(x)
+            mas.add(x)
             yield x
 
 
@@ -62,9 +62,9 @@ def chunks(size: int, iterable: Iterable):
         if len(res) == size:
             yield tuple(res)
             res = []
-    if len(res) > 0:
+    while 0 < len(res) < size:
         res.append(None)
-        yield tuple(res)
+    yield tuple(res)
 
 
 def first(iterable: Iterable):

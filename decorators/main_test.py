@@ -26,8 +26,8 @@ def test_process_text_ok():
                                ' revolution resulted in 3 concepts: '
                                'freedom,equality,fraternity')
     assert result == 'ThE FrencH RevolutioN ' \
-                     'ResulteD IN 3 Concepts  ' \
-                     'Freedom Equality FraternitY'
+                     'ResulteD IN 3 ConceptS  ' \
+                     'FreedoM EqualitY FraternitY'
 
 
 def test_process_text_ok_2():
@@ -35,5 +35,5 @@ def test_process_text_ok_2():
                                   'revolution resulted in 3 concepts: '
                                   'freedom,equality,fraternity')
     assert result == 'ThE FrencH RevolutioN ' \
-                     'ResulteD IN 3 ConceptS ' \
+                     'ResulteD IN 3 ConceptS  ' \
                      'FreedoM EqualitY FraternitY'
