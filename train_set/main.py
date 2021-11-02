@@ -80,6 +80,7 @@ def prepare_train_set(logs_path: str,
 
 
 if __name__ == '__main__':
+    pd.read_csv('').items
     t = timeit.Timer(
         'prepare_train_set(logs_path=\'other_user_logs/*.csv\', '
         'session_length=10, window_size=10, max_duration=30 * 60)',
