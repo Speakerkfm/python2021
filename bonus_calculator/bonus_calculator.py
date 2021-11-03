@@ -17,7 +17,7 @@ def calc_bonus(salary: int, mark: float, grade: int) -> int:
     if 13 <= grade < 15:
         bonus = 1.15 * salary
     if 15 <= grade:
-        bonus = 1.1 * salary
+        bonus = 1.2 * salary
 
     bonus_modifier = 0
     if mark < 2:
