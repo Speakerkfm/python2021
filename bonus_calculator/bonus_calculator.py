@@ -1,39 +1,55 @@
 from allpairspy import AllPairs
 
 
-def calc_bonus(salary: int, mark: float, grade: int) -> int:
+def validate_salary(salary: int):
     if 70000 > salary or salary > 750000:
         raise ValueError('salary must be [70000...750000]')
+
+
+def validate_mark(mark: float):
     if 1 > mark or mark > 5:
         raise ValueError('mark must be [1...5]')
+
+
+def validate_grade(grade: int):
     if 7 > grade or grade > 17:
-        raise ValueError('grade mus be [7...17]')
+        raise ValueError('grade must be [7...17]')
 
-    bonus = 0
+
+def calc_grade_bonus(grade: int) -> float:
+    validate_grade(grade)
+
     if grade < 10:
-        bonus = 1.05 * salary
+        return 1.05
     if 10 <= grade < 13:
-        bonus = 1.1 * salary
+        return 1.1
     if 13 <= grade < 15:
-        bonus = 1.15 * salary
+        return 1.15
     if 15 <= grade:
-        bonus = 1.1 * salary
+        return 1.2
 
-    bonus_modifier = 0
+
+def calc_bonus_modifier(mark: float) -> float:
+    validate_mark(mark)
+
     if mark < 2:
-        bonus_modifier = 0
+        return 0
     if 2 <= mark < 2.5:
-        bonus_modifier = 0.25
+        return 0.25
     if 2.5 <= mark < 3:
-        bonus_modifier = 0.5
+        return 0.5
     if 3 <= mark < 3.5:
-        bonus_modifier = 1
+        return 1
     if 3.5 <= mark < 4:
-        bonus_modifier = 1.5
+        return 1.5
     if 4 <= mark:
-        bonus_modifier = 2
+        return 2
 
-    return round(bonus * bonus_modifier, 2)
+
+def calc_bonus(salary: int, mark: float, grade: int) -> float:
+    validate_salary(salary)
+    result = calc_bonus_modifier(mark) * calc_grade_bonus(grade) * salary
+    return round(result, 2)
 
 
 if __name__ == '__main__':
@@ -45,4 +61,4 @@ if __name__ == '__main__':
 
     print("PAIRWISE:")
     for i, pairs in enumerate(AllPairs(parameters)):
-        print("{:2d}: {}".format(i, pairs))
+        print("{}".format(tuple(pairs)))
